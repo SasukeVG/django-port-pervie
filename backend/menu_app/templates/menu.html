@@ -4,10 +4,10 @@
         {% if not item.parent %}
             <li>
                 <a href="{{ item.get_url }}">{{ item.title }}</a>
-                {% if item.children.exists %}
+                {% if item.children.exists and item.id == selected_menu_item_id %}
                     <ul>
                     {% for child in item.children.all %}
-                        <li><a href="{{ child.get_url }}">{{ child.title }}</a></li>
+                        <li><a>{{ child.title }}</a></li>
                     {% endfor %}
                     </ul>
                 {% endif %}

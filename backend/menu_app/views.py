@@ -1,21 +1,10 @@
-from typing import List
+from typing import List, Optional
 
 from django.shortcuts import render
 from .models import Menu, MenuItem
 
 
-def index(request):
-    # Define the context dictionary
-
-    #menu: Menu = Menu(name='Main Menu')
-    menu = Menu.objects.first()
-    context = {'menu': menu}
-    #print(menu.__dict__)
-    #titles: List[str] = ['Keyboards', 'Headphones', 'Mouses']
-    #sub_tiles = ['Razer', 'Sony', 'StealSeries']
-
-    #base_tiles = [MenuItem(title=title, url=title, named_url=title, menu=menu).save() for title in titles]
-    #sub_tiles =  [MenuItem(title=title, url=title, named_url=title, menu=menu, parent=bt).save() for title in titles
-    #                                                                for bt in base_tiles]
-    # Render the template with the context dictionary
+def index(request, selected_menu_item_id: Optional[int] = None):
+    menu = Menu.objects.get(name='Main Menu')
+    context = {'menu': menu, 'selected_menu_item_id': selected_menu_item_id}
     return render(request, 'menu.html', context)
