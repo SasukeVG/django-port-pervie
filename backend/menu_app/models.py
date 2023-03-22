@@ -20,4 +20,4 @@ class MenuItem(models.Model):
     def get_url(self):
         if self.parent:
             return
-        return str(self.id)
+        return self.id
