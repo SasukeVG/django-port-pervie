@@ -21,3 +21,8 @@ class MenuItem(models.Model):
         if self.parent:
             return
         return self.id
+
+# class MenuItem(models.Model):
+#     name = models.CharField(max_length=100)
+#     url = models.CharField(max_length=100)
+#     parent = models.ForeignKey('self', null=True, blank=True, on_delete=models.CASCADE, related_name='children')

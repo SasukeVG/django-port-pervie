@@ -1,18 +1,32 @@
-{% if menu %}
-    <ul>
-    {% for item in menu.menu_items.all %}
-        {% if not item.parent %}
-            <li>
-                <a href="{{ item.id }}">{{ item.title }}</a>
-                {% if item.children.exists and item.id == selected_menu_item_id %}
-                    <ul>
-                    {% for child in item.children.all %}
-                        <li><a>{{ child.title }}</a></li>
-                    {% endfor %}
-                    </ul>
-                {% endif %}
-            </li>
+<!--{% if menu %}-->
+<!--    <ul>-->
+<!--    {% for item in menu.menu_items.all %}-->
+<!--        {% if not item.parent %}-->
+<!--            <li>-->
+<!--                <a href="{{ item.id }}">{{ item.title }}</a>-->
+<!--                {% if item.children.exists and item.id == selected_menu_item_id %}-->
+<!--                    <ul>-->
+<!--                    {% for child in item.children.all %}-->
+<!--                        <li><a>{{ child.title }}</a></li>-->
+<!--                    {% endfor %}-->
+<!--                    </ul>-->
+<!--                {% endif %}-->
+<!--            </li>-->
+<!--        {% endif %}-->
+<!--    {% endfor %}-->
+<!--    </ul>-->
+<!--{% endif %}-->
+
+<ul>
+{% for item in top_level_items %}
+    <li><a href="{{ item.id }}">{{ item.title }}</a>
+       {% if item.children.exists and item.id == selected_menu_item_id %}
+            <ul>
+                {% for child in item.children.all %}
+                    <li><a href="{{ child.id }}">{{ child.title }}</a></li>
+                {% endfor %}
+            </ul>
         {% endif %}
-    {% endfor %}
-    </ul>
-{% endif %}
+    </li>
+{% endfor %}
+</ul>
